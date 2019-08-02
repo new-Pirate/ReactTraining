@@ -1,0 +1,22 @@
+.personDetails {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  background: #2B2A2B;
+
+  .personDetails-image {
+    width: 30%;
+    height: 30%;
+    border-radius: 10px;
+  }
+
+  .list-group-item {
+    padding: .25rem;
+    background: #2B2A2B;
+    border-color:  #444;
+
+    .term {
+      margin-right: .5rem;
+    }
+  }
+}

@@ -1,8 +1,14 @@
 @import "vars.scss";
 @import "media"; // Always at the end
 
-.todo-app {
-  margin: 2rem auto 0 auto;
-  max-width: 400px;
-  font-size: 30px;
+body {
+  background: #201F20;
+  color: #fff;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

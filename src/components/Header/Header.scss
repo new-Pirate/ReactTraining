@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  margin-top: .5rem;
+  padding-left: 10px;
+}
+
+.header__lists {
+  display: flex;
+}
+
+.header__item {
+  list-style: none;
+  margin: 0;
+  padding: .5rem 1rem;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: #444;
+  }
+}
+
+.header a {
+  text-decoration: none;
+  color: #00bc8c;
+}
+
+.header h3 a {
+  color: #fff;
+
+  &:hover {
+    color: #00bc8c;
+  }
+}

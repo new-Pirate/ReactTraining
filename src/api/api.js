@@ -12,44 +12,44 @@ export default class SwapiService {
       .then((body) => {
         return Promise.resolve(body);
       })
-  }
+  };
 
-  async getAllPeople() {
+  getAllPeople = async () => {
     const res = await this.getResoure(`/people/`);
     return res.results.map(this._transformPerson);
-  }
+  };
 
-  async getPerson(id) {
+  getPerson = async (id) =>  {
     const person = await this.getResoure(`/people/${id}`);
     return this._transformPlanet(person);
-  }
+  };
 
-  async getAllPlanets() {
+  getAllPlanets = async () =>  {
     const res = await this.getResoure(`/planets/`);
     return res.results.map(this._transformPlanet);
-  }
+  };
 
-  async getPlanet(id) {
+  getPlanet = async (id) =>  {
     const planet = await this.getResoure(`/planets/${id}`);
     return this._transformPlanet(planet);
-  }
+  };
 
-  async getAllStarships() {
+  getAllStarships = async (id) =>  {
     const res = await this.getResoure(`/starships/`);
     return res.results.map(this._transformStarship);
-  }
+  };
 
-  async getStarship(id) {
+  getStarship = async (id) =>  {
     const starship = await this.getResoure(`/starships/${id}`);
     return this._transformStarship(starship);
-  }
+  };
 
   _extractId(item) {
     const idRegExp = /\/([0-9]*)\/$/;
     return item.url.match(idRegExp)[1];
-  }
+  };
 
-  _transformPlanet(planet) {
+  _transformPlanet = (planet) => {
     return {
       id: this._extractId(planet),
       name: planet.name,
@@ -57,9 +57,9 @@ export default class SwapiService {
       rotationPeriod: planet.rotation_period,
       diameter: planet.diameter
     }
-  }
+  };
 
-  _transformStarship(starship) {
+  _transformStarship = (starship) => {
     return {
       id: this._extractId(starship),
       name: starship.name,
@@ -71,9 +71,9 @@ export default class SwapiService {
       passengers: starship.passengers,
       cargoCapacity: starship.cargoCapacity,
     }
-  }
+  };
 
-  _transformPerson(person) {
+  _transformPerson = (person) => {
     return {
       id: this._extractId(person),
       name: person.name,
@@ -81,5 +81,5 @@ export default class SwapiService {
       birthYear: person.birthYear,
       eyeColor: person.eyeColor
     }
-  }
+  };
 }

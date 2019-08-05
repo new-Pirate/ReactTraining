@@ -2,6 +2,7 @@ import React from 'react';
 
 import SwapiApi from '../../api/api';
 import Spinner from '../Spinner/Spinner';
+import ErrorIndicator from '../Error-indicator/Error-indicator'
 
 import './Random-planet.scss';
 
@@ -10,35 +11,55 @@ class RandomPlanet extends React.Component {
 		super();
 		this.state = {
 			planet: {},
-			loading: true
+			loading: true,
+			error: false
 		};
-		this.updatePlanet();
 	}
 
 	swapiApi = new SwapiApi();
 
+	componentDidMount() {
+		this.updatePlanet();
+		this.interval = setInterval(this.updatePlanet, 5000);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.interval);
+	}
+
 	onPlanetLoaded = (planet) => {
 		this.setState({
 			planet: planet,
-			loading: false
+			loading: false,
+			error: false
 		});
 	};
 
-	updatePlanet() {
-		const id = Math.floor(Math.random() * 25 + 2);
-		this.swapiApi
-			.getPlanet(id)
+	onError = () => {
+		this.setState({
+			error: true,
+			loading: false
+		});
+	}
+
+	updatePlanet = () => {
+		const id = Math.floor(Math.random() * 25);
+		this.swapiApi.getPlanet(id)
 			.then(this.onPlanetLoaded)
+			.catch(this.onError);
 	}
 
 	render() {
-		const { planet, loading } = this.state;
 
+		const { planet, loading, error } = this.state;
+
+		const errorMessage = error ? <ErrorIndicator /> : null;
 		const spinner = loading ? <Spinner /> : null;
-		const content = !loading ? <PlanetView planet={planet} /> : null;
+		const content = !(loading || error) ? <PlanetView planet={planet} /> : null;
 
 		return (
 			<div className="randomPlanet jumbotron rounded">
+				{errorMessage}
 				{spinner}
 				{content}
 			</div>

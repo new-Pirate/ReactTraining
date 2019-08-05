@@ -1,25 +1,58 @@
 import React from 'react';
 
+import Spinner from '../Spinner/Spinner';
+
 import './Item-list.scss';
 
 class ItemList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      itemList: null
+    };
+  }
 
-	render() {
+  
 
-		return (
-			<ul className="item-list list-group rounded">
-        <li className="list-group-item">
-          Luke Skywalker
+  componentDidMount() {
+    const { getData } = this.props;
+
+    getData()
+      .then((itemList) => {
+        this.setState({
+          itemList: itemList
+        })
+      })
+  }
+
+  renderItems(arr) {
+    return arr.map(({ id, name }) => {
+      return (
+        <li className="list-group-item"
+          key={id}
+          onClick={() => this.props.onItemSelected(id)}>
+          {name}
         </li>
-        <li className="list-group-item">
-          Darth Vader
-        </li>
-        <li className="list-group-item">
-          R2-D2
-        </li>
+      );
+    });
+  }
+
+  render() {
+
+    const { itemList } = this.state;
+
+    if (!itemList) {
+      return <Spinner />
+    }
+
+    const items = this.renderItems(itemList);
+
+    return (
+      <ul className="item-list list-group">
+        {items}
       </ul>
-		);
-	}
+    );
+  }
 };
 
 export default ItemList;

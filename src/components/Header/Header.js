@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
@@ -9,19 +10,30 @@ class Header extends React.Component {
 		return (
 			<div className="header">
 				<h3>
-					<a href="#">StarDB</a>
+					<Link to="/">StarDB</Link>
 				</h3>
 				<ul className="header__lists">
 					<li className="header__item">
-						<a href="#">People</a>
+						<Link to="/people/">People</Link>
 					</li>
 					<li className="header__item">
-						<a href="#">Planets</a>
+						<Link to="/planets/">Planets</Link>
 					</li>
 					<li className="header__item">
-						<a href="#">Starships</a>
+						<Link to="/staships/">Starships</Link>
+					</li>
+					<li className="header__item">
+          <Link to="/login">Login</Link>
+					</li>
+					<li className="header__item">
+						<Link to="/secret">Secret</Link>
 					</li>
 				</ul>
+				<button
+          // onClick={onServiceChange}
+          className="btn btn-primary btn-sm">
+					Change Service
+				</button>
 			</div>
 		);
 	}

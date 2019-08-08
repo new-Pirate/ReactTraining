@@ -37,7 +37,6 @@ class ItemDetails extends React.Component {
 	}
 
 	render() {
-
 		const { item, image } = this.state;
 
 		if (!item) {

@@ -6,9 +6,10 @@ export const dec = () => {
   return {type: 'DEC'}
 }
 
-export const rnd = (payload) => {
+export const rnd = () => {
+
   return {
     type: 'RND',
-    payload
+    payload: Math.floor(Math.random() * 10)
   }
 }

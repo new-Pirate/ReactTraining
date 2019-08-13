@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import withBookstoreService from '../Hoc/with-bookstore-service';
 import BookListItem from '../Book-list-item/Book-list-item';
@@ -20,7 +19,7 @@ class BookList extends React.Component {
   render() {
     const { books } = this.props;
     return (
-      <ul>
+      <ul className='book-list'>
         {
           books.map((book) => {
             return (
